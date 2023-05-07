@@ -1,0 +1,40 @@
+[
+  {
+    "order": {
+      "customerId": 8,
+      "orderDetail": [
+        {
+          "productId": 46,
+          "price": 695,
+          "quantity": 1,
+          "discount": 0
+        },
+        {
+          "productId": 37,
+          "price": 22,
+          "quantity": 1,
+          "discount": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "order": {
+      "customerId": 4,
+      "orderDetail": [
+        {
+          "productId": 46,
+          "price": 695,
+          "quantity": 1,
+          "discount": 0
+        },
+        {
+          "productId": 37,
+          "price": 22,
+          "quantity": 1,
+          "discount": 0.5
+        }
+      ]
+    }
+  }
+]

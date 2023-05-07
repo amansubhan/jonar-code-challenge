@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  cache:
+    image: redis:6-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - cache:/data
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  api:
+    container_name: api
+    image: amansubhan/jonar-code-challenge
+    depends_on:
+      - db
+      - cache
+    ports:
+      - "3600:3600"
+    environment:
+      NODE_ENV: production
+      PORT: 3600
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_SCHEMA: postgres
+      REDIS_URL: redis://cache:6379
+      JWT_SECRET: SuperSecretKey
+      TAX_PERCENT: 15
+      SENDER_NAME: Aman Subhan
+      SENDER_EMAIL: mail@example.com
+    links:
+      - db
+      - cache
+volumes:
+  db:
+    driver: local
+  cache:
+    driver: local

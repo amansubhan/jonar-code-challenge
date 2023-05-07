@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
@@ -11,4 +11,4 @@ COPY . .
 RUN npm run build
 
 EXPOSE 3600
-CMD [ "npm", "start" ]
+ENTRYPOINT ["/bin/sh", "./startup.sh"]
